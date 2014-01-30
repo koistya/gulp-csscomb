@@ -27,15 +27,15 @@ module.exports = function () {
                 if (err) {
                     cb(gutil.PluginError(PLAGIN_NAME, err));
                 }
-                var output = csscomb.processString(String(buffer));
+                var syntax = file.path.split('.').pop();
+                var output = csscomb.processString(String(buffer), syntax);
                 cb(null, new Buffer(output));
             }));
             stream.push(file);
             done();
         } else {
-            var css = String(file.contents);
-            gutil.log(css);
-            var output = csscomb.processString(css);
+            var syntax = file.path.split('.').pop();
+            var output = csscomb.processString(String(file.contents), syntax);
             file.contents = new Buffer(output);
             stream.push(file);
             done();
