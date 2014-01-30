@@ -16,8 +16,8 @@ npm install gulp-csscomb --save-dev
 ## Example
 
 ```javascript
-var gulp = require('gulp');
-var csso = require('gulp-csscomb');
+var gulp    = require('gulp'),
+    csscomb = require('gulp-csscomb');
 
 gulp.task('default', function() {
     return gulp.src('./main.css')
