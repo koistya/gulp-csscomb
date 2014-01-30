@@ -22,6 +22,9 @@ module.exports = function () {
             return;
         }
 
+        var config = csscomb.getConfig('csscomb');
+        csscomb.configure(config);
+
         if (file.isStream()) {
             file.contents = file.contents.pipe(new bufferstreams(function (err, buffer, cb) {
                 if (err) {
