@@ -3,6 +3,7 @@
 .editorconfig
 .gitattributes
 .jshintrc
+.npmignore
 .travis.yml
 gulpfile.js
 indexSpec.js

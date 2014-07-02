@@ -52,7 +52,10 @@ gulp.task('styles', function () {
 ```
 
 If there is `.csscomb.json` file present in the same folder as the source file(s),
-`csscomb` will read config settings from it instead using default config.
+or in the project root folder, `gulp-csscomb` will read config settings from it
+instead of default config.
+
+You can also specify a pre-defined configuration. Ex.: `csscomb('zen')`
 
 ## License
 
