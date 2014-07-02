@@ -2,16 +2,16 @@
 
 'use strict';
 
-var CssComb       = require('csscomb'),
-    csscomb       = new CssComb(),
-    gutil         = require('gulp-util'),
-    transform     = require('stream').Transform,
-    bufferstreams = require('bufferstreams'),
+var Comb = require('csscomb');
+var gutil = require('gulp-util');
+var fs = require('fs');
+var path = require('path');
+var transform = require('stream').Transform;
+var bufferstreams = require('bufferstreams');
 
-    PLAGIN_NAME   = 'gulp-csscomb';
+var PLAGIN_NAME   = 'gulp-csscomb';
 
 module.exports = function () {
-
     var stream = new transform({ objectMode: true });
 
     stream._transform = function(file, unused, done) {
@@ -22,8 +22,10 @@ module.exports = function () {
             return;
         }
 
-        var config = csscomb.getConfig('csscomb');
-        csscomb.configure(config);
+        var configFile;
+        var config = file.path && fs.existsSync(configFile = (path.dirname(file.path) + '/.csscomb.json')) ?
+            require(configFile) : 'csscomb';
+        var comb = new Comb(config);
 
         if (file.isStream()) {
             file.contents = file.contents.pipe(new bufferstreams(function (err, buffer, cb) {
@@ -31,14 +33,14 @@ module.exports = function () {
                     cb(gutil.PluginError(PLAGIN_NAME, err));
                 }
                 var syntax = file.path.split('.').pop();
-                var output = csscomb.processString(String(buffer), syntax);
+                var output = comb.processString(String(buffer), syntax);
                 cb(null, new Buffer(output));
             }));
             stream.push(file);
             done();
         } else {
             var syntax = file.path.split('.').pop();
-            var output = csscomb.processString(String(file.contents), syntax);
+            var output = comb.processString(String(file.contents), syntax);
             file.contents = new Buffer(output);
             stream.push(file);
             done();

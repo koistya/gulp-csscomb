@@ -1,0 +1,8 @@
+*.tgz
+.idea
+.editorconfig
+.gitattributes
+.jshintrc
+.travis.yml
+gulpfile.js
+indexSpec.js

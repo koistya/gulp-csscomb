@@ -2,11 +2,11 @@
 
 'use strict';
 
-var gulp    = require('gulp'),
-    gutil   = require('gulp-util'),
-    clear   = require('clear'),
-    jshint  = require('gulp-jshint'),
-    jasmine = require('gulp-jasmine');
+var gulp  = require('gulp');
+var gutil = require('gulp-util');
+var clear = require('clear');
+var jshint = require('gulp-jshint');
+var jasmine = require('gulp-jasmine');
 
 gulp.task('lint', function () {
     gulp.src('*.js')

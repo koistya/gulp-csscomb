@@ -16,15 +16,18 @@ npm install gulp-csscomb --save-dev
 ## Example
 
 ```javascript
-var gulp    = require('gulp'),
-    csscomb = require('gulp-csscomb');
+var gulp = require('gulp');
+var csscomb = require('gulp-csscomb');
 
-gulp.task('default', function() {
-    return gulp.src('./main.css')
+gulp.task('default', function () {
+    return gulp.src('./src/styles/main.css')
         .pipe(csscomb())
-        .pipe(gulp.dest('./out'));
+        .pipe(gulp.dest('./build/css'));
 });
 ```
+
+If there is `.csscomb.json` file present in the same folder with the source .css file,
+`csscomb` will read configuration data from it.
 
 ## License
 
