@@ -1,9 +1,7 @@
-/**
- * gulp-csscomb
- * https://github.com/koistya/gulp-csscomb
+/*!
+ * gulp-csscomb | https://github.com/koistya/gulp-csscomb
  *
- * Copyright (c) Konstantin Tarkus (@koistya)
- * Licensed under the MIT license (MIT). See LICENSE.txt
+ * Copyright (c) Konstantin Tarkus (@koistya). See LICENSE.txt
  */
 
 'use strict';
@@ -19,7 +17,7 @@ var PluginError = gutil.PluginError;
 var PLUGIN_NAME = 'gulp-csscomb';
 
 // Plugin level function (dealing with files)
-function Plugin(config) {
+function Plugin(config, log) {
 
     // Create a stream through which each file will pass
     var stream = through.obj(function (file, enc, cb) {
@@ -34,7 +32,7 @@ function Plugin(config) {
 
             var configFile;
 
-            gutil.log(PLUGIN_NAME, 'Processing ' + gutil.colors.magenta(file.path));
+            log && gutil.log(PLUGIN_NAME, 'Processing ' + gutil.colors.magenta(file.path));
 
             if ((typeof config === 'undefined' &&
                 (fs.existsSync(configFile = (path.join(path.dirname(file.path), '.csscomb.json'))) ||
@@ -49,7 +47,8 @@ function Plugin(config) {
                         'Failed to load configuration from ' + configFile + '. ' + err.message));
                     return cb();
                 }
-                gutil.log(PLUGIN_NAME, 'Using configuration file ' + gutil.colors.magenta(configFile));
+
+                log && gutil.log(PLUGIN_NAME, 'Using configuration file ' + gutil.colors.magenta(configFile));
             }
 
             var comb = new Comb(config || 'csscomb');
