@@ -51,10 +51,15 @@ function Plugin(config, log) {
                 log && gutil.log(PLUGIN_NAME, 'Using configuration file ' + gutil.colors.magenta(configFile));
             }
 
-            var comb = new Comb(config || 'csscomb');
-            var syntax = file.path.split('.').pop();
-            var output = comb.processString(file.contents.toString('utf8'), syntax);
-            file.contents = new Buffer(output);
+            try {
+              var comb = new Comb(config || 'csscomb');
+              var syntax = file.path.split('.').pop();
+              var output = comb.processString(file.contents.toString('utf8'), syntax);
+              file.contents = new Buffer(output);
+            } catch(err) {
+              err.fileName = file.path;
+              this.emit('error', new PluginError(PLUGIN_NAME, err));
+            }
         }
 
         // make sure the file goes through the next gulp plugin
