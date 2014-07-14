@@ -53,8 +53,13 @@ function Plugin(config, log) {
 
             var comb = new Comb(config || 'csscomb');
             var syntax = file.path.split('.').pop();
-            var output = comb.processString(file.contents.toString('utf8'), syntax);
-            file.contents = new Buffer(output);
+            
+            try {
+                var output = comb.processString(file.contents.toString('utf8'), syntax, file.path);
+                file.contents = new Buffer(output);
+            } catch (err) {
+                this.emit('error', new PluginError(PLUGIN_NAME, err));
+            }
         }
 
         // make sure the file goes through the next gulp plugin
