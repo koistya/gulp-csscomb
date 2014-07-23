@@ -32,7 +32,7 @@ function Plugin(config, log) {
             this.emit('error', new PluginError(PLUGIN_NAME, 'Streams are not supported!'));
             return cb();
         } else if (file.isBuffer() &&
-            ['.css', '.scss', '.less'].indexOf(path.extname(file.path)) !== -1) {
+            ['.css', '.sass', '.scss', '.less'].indexOf(path.extname(file.path)) !== -1) {
 
             var configFile;
 
@@ -59,7 +59,11 @@ function Plugin(config, log) {
             var syntax = file.path.split('.').pop();
 
             try {
-                var output = comb.processString(file.contents.toString('utf8'), syntax, file.path);
+                var output = comb.processString(
+                    file.contents.toString('utf8'), {
+                        syntax: syntax,
+                        filename: file.path
+                    });
                 file.contents = new Buffer(output);
             } catch (err) {
                 this.emit('error', new PluginError(PLUGIN_NAME, err));
