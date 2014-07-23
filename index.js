@@ -19,6 +19,10 @@ var PLUGIN_NAME = 'gulp-csscomb';
 // Plugin level function (dealing with files)
 function Plugin(config, log) {
 
+    if (typeof log === 'undefined') {
+        log = false;
+    }
+
     // Create a stream through which each file will pass
     var stream = through.obj(function (file, enc, cb) {
 
@@ -53,7 +57,7 @@ function Plugin(config, log) {
 
             var comb = new Comb(config || 'csscomb');
             var syntax = file.path.split('.').pop();
-            
+
             try {
                 var output = comb.processString(file.contents.toString('utf8'), syntax, file.path);
                 file.contents = new Buffer(output);
