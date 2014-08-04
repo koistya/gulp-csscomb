@@ -7,6 +7,7 @@ var Comb = require('csscomb');
 var _ = require('lodash');
 
 module.exports = function () {
+    var out = [];
     var options = handleOptions(getArgs.apply(null, arguments));
 
     log = log.bind(null, options.verbose);
@@ -34,6 +35,14 @@ module.exports = function () {
         try {
             var processed = comb.processString(file.contents.toString('utf8'), { filename: file.path });
 
+            if (options.lint) {
+                if (processed !== file.contents.toString('utf8')) {
+                    out.push('! ' + file.path);
+                }
+                this.push(file);
+                return cb();
+            }
+
             file.contents = new Buffer(processed);
         } catch (err) {
             this.emit('error', new gutil.PluginError('gulp-csscomb', err));
@@ -41,6 +50,14 @@ module.exports = function () {
 
         this.push(file);
         return cb();
+    }, function(cb) {
+        if (options.lint && out.length > 0) {
+            this.emit('error', new gutil.PluginError('gulp-csscomb', [
+                gutil.colors.red('\nCSScomb linting failed for these files:'),
+                out.join('\n')
+            ].join('\n')));
+        }
+        cb();
     });
 };
 
@@ -86,7 +103,7 @@ function getConfig(config, file, cb) {
  * @return {Object} options object with `config` and `verbose` properties
  */
 function handleOptions(args) {
-    var options = { config: undefined, verbose: false };
+    var options = { config: undefined, verbose: false, lint: false };
 
     if (_.isString(args[0])) {
         options.config = args[0];
