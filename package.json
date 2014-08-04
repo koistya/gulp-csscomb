@@ -13,7 +13,8 @@
     "bufferstreams": "0.0.2",
     "csscomb": "~3.0.0",
     "gulp-util": "~3.0.0",
-    "through2": "^0.6.1"
+    "through2": "^0.6.1",
+    "lodash": "~2.4.1"
   },
   "devDependencies": {
     "clear": "0.0.1",
