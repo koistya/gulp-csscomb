@@ -13,12 +13,12 @@
     "bufferstreams": "0.0.2",
     "csscomb": "~3.0.0",
     "gulp-util": "~3.0.0",
-    "through2": "^0.5.1"
+    "through2": "^0.6.1"
   },
   "devDependencies": {
     "clear": "0.0.1",
     "gulp": "~3.8.7",
-    "gulp-jshint": "~1.8.3",
+    "gulp-jshint": "~1.8.4",
     "gulp-jasmine": "~0.3.0",
     "jshint-stylish": "~0.4.0"
   },
