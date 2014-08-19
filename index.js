@@ -15,13 +15,23 @@ var PluginError = gutil.PluginError;
 
 // Constants
 var PLUGIN_NAME = 'gulp-csscomb';
+var SUPPORTED_EXTENSIONS = ['.css', '.sass', '.scss', '.less'];
 
 // Plugin level function (dealing with files)
-function Plugin(config, log) {
+function Plugin(configPath, options) {
 
-    if (typeof log === 'undefined') {
-        log = false;
+    if (arguments.length == 1 && typeof configPath === 'object') {
+        options = configPath;
+        configPath = options.configPath;
+    } else if (arguments.length == 2 && typeof options === 'boolean') {
+        options = { verbose: options };
     }
+
+    options = options || {};
+    configPath = configPath || null;
+
+    var verbose = options.verbose || false;
+    var readOnly = options.readOnly || false;
 
     // Create a stream through which each file will pass
     var stream = through.obj(function (file, enc, cb) {
@@ -31,29 +41,19 @@ function Plugin(config, log) {
         } else if (file.isStream()) {
             this.emit('error', new PluginError(PLUGIN_NAME, 'Streams are not supported!'));
             return cb();
-        } else if (file.isBuffer() &&
-            ['.css', '.sass', '.scss', '.less'].indexOf(path.extname(file.path)) !== -1) {
+        } else if (file.isBuffer() && SUPPORTED_EXTENSIONS.indexOf(path.extname(file.path)) !== -1) {
 
-            var configFile;
+            verbose && gutil.log(PLUGIN_NAME, 'Processing ' + gutil.colors.magenta(file.path));
 
-            log && gutil.log(PLUGIN_NAME, 'Processing ' + gutil.colors.magenta(file.path));
-
-            if ((typeof config === 'undefined' &&
-                (fs.existsSync(configFile = (path.join(path.dirname(file.path), '.csscomb.json'))) ||
-                    fs.existsSync(configFile = (path.join(process.cwd(), '.csscomb.json'))))) ||
-                (typeof config === 'string' && config.indexOf('.') !== -1 && fs.existsSync(configFile = (config)))) {
-
-                // Load configuration from the file
-                try {
-                    config = require(configFile);
-                } catch (err) {
-                    this.emit('error', new PluginError(PLUGIN_NAME,
-                        'Failed to load configuration from ' + configFile + '. ' + err.message));
-                    return cb();
-                }
-
-                log && gutil.log(PLUGIN_NAME, 'Using configuration file ' + gutil.colors.magenta(configFile));
+            if (configPath && !fs.existsSync(configPath)) {
+                this.emit('error', new PluginError(PLUGIN_NAME, 'Configuration file not found: ' + gutil.colors.magenta(configPath)));
+                return cb();
             }
+
+            configPath = Comb.getCustomConfigPath(configPath || path.join(path.dirname(file.path), '.csscomb.json'));
+            var config = Comb.getCustomConfig(configPath);
+
+            verbose && gutil.log(PLUGIN_NAME, 'Using configuration file ' + gutil.colors.magenta(configPath));
 
             var comb = new Comb(config || 'csscomb');
             var syntax = file.path.split('.').pop();
