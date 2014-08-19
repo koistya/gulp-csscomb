@@ -51,6 +51,32 @@ gulp.task('styles', function () {
 });
 ```
 
+## Example 3 (linting)
+
+```js
+var gulp = require('gulp');
+var csscomb = require('gulp-csscomb');
+
+gulp.task('lint', function() {
+    return gulp.src(['/css/*.css'])
+        .pipe(csscomb({ lint: true }));
+});
+```
+
+## Options
+
+Usage: `csscomb([{String} config] [{Object} options])`
+
+* [{String}] `config` path to config
+* [{Object}] `options` options object
+* [{String}] `options.config` path to config
+* [{Boolean}] `options.lint` linting
+* [{Boolean}] `options.verbose` verbose
+
+**Deprecated** will be removed in next major release:
+* [{String}] `config` optional path to `.csscomb.json`
+* [{Boolean}] `verbose` optional verbose mode
+
 If there is `.csscomb.json` file present in the same folder as the source file(s),
 or in the project root folder, `gulp-csscomb` will read config settings from it
 instead of default config.
