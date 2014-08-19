@@ -24,7 +24,7 @@ function Plugin(configPath, options) {
         options = configPath;
         configPath = options.configPath;
     } else if (arguments.length == 2 && typeof options === 'boolean') {
-        options = { verbose: options };
+        options = { verbose: options }; // for backward compatibility
     }
 
     options = options || {};
