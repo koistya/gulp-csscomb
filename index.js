@@ -31,7 +31,7 @@ function Plugin(configPath, options) {
     configPath = configPath || null;
 
     var verbose = options.verbose || false;
-    var readOnly = options.readOnly || false;
+    var lint = options.lint || false; // TODO: Report about found issues in style sheets
 
     // Create a stream through which each file will pass
     var stream = through.obj(function (file, enc, cb) {
