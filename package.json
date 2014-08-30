@@ -12,7 +12,7 @@
   "dependencies": {
     "bufferstreams": "0.0.2",
     "csscomb": "~3.0.1",
-    "gulp-util": "~3.0.0",
+    "gulp-util": "~3.0.1",
     "through2": "^0.6.1"
   },
   "devDependencies": {
