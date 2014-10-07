@@ -1,4 +1,4 @@
-# gulp-csscomb &nbsp; [![Build Status](http://img.shields.io/travis/koistya/gulp-csscomb/master.svg?style=flat)](http://travis-ci.org/koistya/gulp-csscomb) [![devDependencies Status](http://img.shields.io/david/dev/koistya/gulp-csscomb.svg?style=flat)](https://david-dm.org/koistya/gulp-csscomb#info=devDependencies) [![Tips](http://img.shields.io/gratipay/koistya.svg?style=flat)](https://gratipay.com/koistya)
+# [gulp](https://gulpjs.com)-csscomb &nbsp; [![Build Status](http://img.shields.io/travis/koistya/gulp-csscomb/master.svg?style=flat)](http://travis-ci.org/koistya/gulp-csscomb) [![Dependency Status](https://david-dm.org/koistya/gulp-csscomb.svg?style=flat)](https://david-dm.org/koistya/gulp-csscomb) [![Tips](http://img.shields.io/gratipay/koistya.svg?style=flat)](https://gratipay.com/koistya)
 
 > Format CSS coding style with [CSScomb](https://npmjs.org/package/csscomb).
 
@@ -10,7 +10,7 @@
 [![NPM](https://nodei.co/npm/gulp-csscomb.png?compact=true)](https://www.npmjs.org/package/gulp-csscomb)
 
 ```sh
-$ npm install gulp-csscomb --save-dev
+npm install gulp-csscomb --save-dev
 ```
 
 ## Example 1
