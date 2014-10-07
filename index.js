@@ -33,7 +33,7 @@ function Plugin(configPath, options) {
   //var lint = options.lint || false; // TODO: Report about found issues in style sheets
 
   // Create a stream through which each file will pass
-  var stream = through.obj(function (file, enc, cb) {
+  var stream = through.obj(function(file, enc, cb) {
 
     if (file.isNull()) {
       // Do nothing
