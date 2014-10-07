@@ -37,15 +37,12 @@
     "prestart": "npm install && npm update"
   },
   "keywords": [
-    "gulp",
+    "gulpplugin",
     "css",
     "csscomb",
     "lint",
     "linter",
-    "preprocessor",
-    "gulpplugin",
-    "gulp-plugin",
-    "gulp-csscomb"
+    "preprocessor"
   ],
   "license": "MIT"
 }
