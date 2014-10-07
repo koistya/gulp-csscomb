@@ -19,7 +19,7 @@ npm install gulp-csscomb --save-dev
 var gulp = require('gulp');
 var csscomb = require('gulp-csscomb');
 
-gulp.task('styles', function () {
+gulp.task('styles', function() {
   return gulp.src('src/styles/main.css')
     .pipe(csscomb())
     .pipe(gulp.dest('./build/css'));
@@ -32,7 +32,7 @@ gulp.task('styles', function () {
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 
-gulp.task('styles', function () {
+gulp.task('styles', function() {
   return gulp.src('src/styles/bootstrap.less')
     .pipe($.less({strictMath: true}))
     .pipe($.autoprefixer([
