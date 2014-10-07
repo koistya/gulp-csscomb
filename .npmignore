@@ -5,5 +5,4 @@
 .jshintrc
 .npmignore
 .travis.yml
-gulpfile.js
-indexSpec.js
+test.js

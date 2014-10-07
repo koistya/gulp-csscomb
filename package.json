@@ -1,40 +1,19 @@
 {
   "name": "gulp-csscomb",
   "description": "CSScomb is a coding style formatter for CSS.",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "homepage": "http://github.com/koistya/gulp-csscomb",
   "repository": {
     "type": "git",
     "url": "http://github.com/koistya/gulp-csscomb.git"
   },
-  "author": "Konstantin Tarkus <hello@tarkus.me> (http://tarkus.me)",
-  "main": "./index.js",
-  "dependencies": {
-    "bufferstreams": "^0.0.2",
-    "csscomb": "^3.0.3",
-    "gulp-util": "^3.0.1",
-    "through2": "^0.6.2"
-  },
-  "devDependencies": {
-    "clear": "^0.0.1",
-    "gulp": "^3.8.8",
-    "gulp-jshint": "^1.8.5",
-    "gulp-jasmine": "^1.0.1",
-    "jshint-stylish": "^1.0.0"
-  },
-  "engines": {
-    "node": ">= 0.9.0"
-  },
-  "licenses": {
-    "type": "MIT",
-    "url": "https://github.com/koistya/gulp-csscomb/raw/master/LICENSE.txt"
-  },
   "bugs": {
     "url": "https://github.com/koistya/gulp-csscomb/issues"
   },
-  "scripts": {
-    "start": "gulp",
-    "prestart": "npm install && npm update"
+  "author": "Konstantin Tarkus (@koistya)",
+  "licenses": {
+    "type": "MIT",
+    "url": "https://github.com/koistya/gulp-csscomb/raw/master/LICENSE.txt"
   },
   "keywords": [
     "gulpplugin",
@@ -44,5 +23,20 @@
     "linter",
     "preprocessor"
   ],
-  "license": "MIT"
+  "main": "./index.js",
+  "dependencies": {
+    "csscomb": "^3.0.3",
+    "gulp-util": "^3.0.1",
+    "through2": "^0.6.2"
+  },
+  "devDependencies": {
+    "jshint": "^2.5.6",
+    "mocha": "^1.21.4"
+  },
+  "engines": {
+    "node": ">= 0.9.0"
+  },
+  "scripts": {
+    "test": "jshint index.js test.js && mocha"
+  }
 }

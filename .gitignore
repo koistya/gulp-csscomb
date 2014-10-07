@@ -6,11 +6,5 @@ node_modules
 npm-debug.log
 tmp
 
-# WebStorm
-.idea/
-*.ipr
-*.iws
-*.iml
-
 # NPM
 *.tgz

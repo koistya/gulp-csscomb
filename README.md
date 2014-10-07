@@ -7,47 +7,45 @@
 
 ## Installation
 
-Install via [npm](https://npmjs.org/package/gulp-csscomb):
+[![NPM](https://nodei.co/npm/gulp-csscomb.png?compact=true)](https://www.npmjs.org/package/gulp-csscomb)
 
-```
-npm install gulp-csscomb --save-dev
+```sh
+$ npm install gulp-csscomb --save-dev
 ```
 
 ## Example 1
 
-```javascript
+```js
 var gulp = require('gulp');
 var csscomb = require('gulp-csscomb');
 
 gulp.task('styles', function () {
-    return gulp.src('src/styles/main.css')
-        .pipe(csscomb())
-        .pipe(gulp.dest('./build/css'));
+  return gulp.src('src/styles/main.css')
+    .pipe(csscomb())
+    .pipe(gulp.dest('./build/css'));
 });
 ```
 
 ## Example 2
 
-```javascript
+```js
 var gulp = require('gulp');
-var less = require('gulp-less');
-var prefixer = require('gulp-autoprefixer');
-var csscomb = require('gulp-csscomb');
+var $ = require('gulp-load-plugins')();
 
 gulp.task('styles', function () {
-    return gulp.src('src/styles/bootstrap.less')
-        .pipe(less({strictMath: true}))
-        .pipe(prefixer([
-            'Android 2.3',
-            'Android >= 4',
-            'Chrome >= 20',
-            'Firefox >= 24', // Firefox 24 is the latest ESR
-            'Explorer >= 8',
-            'iOS >= 6',
-            'Opera >= 12',
-            'Safari >= 6']))
-        .pipe(csscomb())
-        .pipe(gulp.dest('./build/css'));
+  return gulp.src('src/styles/bootstrap.less')
+    .pipe($.less({strictMath: true}))
+    .pipe($.autoprefixer([
+      'Android 2.3',
+      'Android >= 4',
+      'Chrome >= 20',
+      'Firefox >= 24', // Firefox 24 is the latest ESR
+      'Explorer >= 8',
+      'iOS >= 6',
+      'Opera >= 12',
+      'Safari >= 6']))
+    .pipe($.csscomb())
+    .pipe(gulp.dest('./build/css'));
 });
 ```
 
