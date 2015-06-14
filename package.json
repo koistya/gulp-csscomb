@@ -25,13 +25,13 @@
   ],
   "main": "./index.js",
   "dependencies": {
-    "csscomb": "^3.0.3",
-    "gulp-util": "^3.0.1",
-    "through2": "^0.6.3"
+    "csscomb": "^3.1.7",
+    "gulp-util": "^3.0.5",
+    "through2": "^2.0.0"
   },
   "devDependencies": {
-    "jshint": "^2.5.8",
-    "mocha": "^2.0.1"
+    "jshint": "^2.8.0",
+    "mocha": "^2.2.5"
   },
   "engines": {
     "node": ">= 0.9.0"
