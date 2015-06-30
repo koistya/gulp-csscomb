@@ -69,7 +69,7 @@ function Plugin(configPath, options) {
           });
         file.contents = new Buffer(output);
       } catch (err) {
-        this.emit('error', new PluginError(PLUGIN_NAME, '' + file.path + '\n' + err));
+        this.emit('error', new PluginError(PLUGIN_NAME, file.path + '\n' + err));
       }
     }
 
