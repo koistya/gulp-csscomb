@@ -27,7 +27,6 @@ function Plugin(configPath, options) {
   }
 
   options = options || {};
-  console.log(options);
   configPath = configPath || null;
 
   var verbose = options.verbose || false;
