@@ -64,7 +64,7 @@ function Plugin(configPath, options) {
       try {
         var output = comb.processString(
           file.contents.toString('utf8'), {
-            syntax: syntax,
+            syntax: options.syntax || syntax,
             filename: file.path
           });
         file.contents = new Buffer(output);
