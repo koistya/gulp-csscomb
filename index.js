@@ -58,7 +58,7 @@ function Plugin(configPath, options) {
         gutil.log(PLUGIN_NAME, 'Using configuration file ' + gutil.colors.magenta(configPath));
       }
 
-      var comb = new Comb(config || 'csscomb');
+      var comb = new Comb(config || options || 'csscomb');
       var syntax = file.path.split('.').pop();
 
       try {
