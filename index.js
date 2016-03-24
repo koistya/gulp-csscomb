@@ -59,12 +59,12 @@ function Plugin(configPath, options) {
       }
 
       var comb = new Comb(config || 'csscomb');
-      var syntax = file.path.split('.').pop();
+      var syntax = options.syntax || file.path.split('.').pop();
 
       try {
         var output = comb.processString(
           file.contents.toString('utf8'), {
-            syntax: options.syntax || syntax,
+            syntax: syntax,
             filename: file.path
           });
         file.contents = new Buffer(output);
