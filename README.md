@@ -1,13 +1,20 @@
-# [gulp](https://gulpjs.com)-csscomb &nbsp; [![Build Status](http://img.shields.io/travis/koistya/gulp-csscomb/master.svg?style=flat)](http://travis-ci.org/koistya/gulp-csscomb) [![Dependency Status](https://david-dm.org/koistya/gulp-csscomb.svg?style=flat)](https://david-dm.org/koistya/gulp-csscomb) [![Tips](http://img.shields.io/gratipay/koistya.svg?style=flat)](https://gratipay.com/koistya)
+# [gulp](http://gulpjs.com)-csscomb &nbsp; [![Build Status](http://img.shields.io/travis/koistya/gulp-csscomb/master.svg?style=flat)](http://travis-ci.org/koistya/gulp-csscomb) [![Dependency Status](https://david-dm.org/koistya/gulp-csscomb.svg?style=flat)](https://david-dm.org/koistya/gulp-csscomb) [![Tips](http://img.shields.io/gratipay/koistya.svg?style=flat)](https://gratipay.com/koistya)
 
-> Format CSS coding style with [CSScomb](https://npmjs.org/package/csscomb).
+[<img src="https://rawgit.com/koistya/gulp-csscomb/master/csscomb.jpg" width="80" height="80" align="right">](http://csscomb.com)
+
+> Format CSS coding style with [CSScomb](http://csscomb.com).
 
 *If you have any difficulties with the output of this plugin, please use the
 [CSScomb tracker](https://github.com/csscomb/csscomb.js/issues).*
 
-## Installation
+---
 
-[![NPM](https://nodei.co/npm/gulp-csscomb.png?compact=true)](https://www.npmjs.org/package/gulp-csscomb)
+<p align="center"><b>🔥 Want to strengthen your core JavaScript skills and master ES6?</b><br>I would personally recommend this awesome <a href="https://es6.io/friend/konstantin">ES6 course</a> by Wes Bos.</p>
+
+---
+
+
+## Installation
 
 ```sh
 npm install gulp-csscomb --save-dev

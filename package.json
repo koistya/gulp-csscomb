@@ -1,7 +1,7 @@
 {
   "name": "gulp-csscomb",
   "description": "CSScomb is a coding style formatter for CSS.",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "homepage": "http://github.com/koistya/gulp-csscomb",
   "repository": {
     "type": "git",
@@ -29,12 +29,12 @@
   ],
   "dependencies": {
     "csscomb": "^3.1.7",
-    "gulp-util": "^3.0.5",
-    "through2": "^2.0.0"
+    "gulp-util": "^3.0.7",
+    "through2": "^2.0.1"
   },
   "devDependencies": {
-    "jshint": "^2.8.0",
-    "mocha": "^2.2.5"
+    "jshint": "^2.9.3",
+    "mocha": "^3.0.2"
   },
   "engines": {
     "node": ">= 0.9.0"
