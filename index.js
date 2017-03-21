@@ -10,6 +10,7 @@ var fs = require('fs');
 var gutil = require('gulp-util');
 var path = require('path');
 var through = require('through2');
+var _ = require('lodash');
 var PluginError = gutil.PluginError;
 
 // Constants
@@ -62,12 +63,14 @@ function Plugin(configPath, options) {
       var syntax = options.syntax || file.path.split('.').pop();
 
       try {
-        var output = comb.processString(
-          file.contents.toString('utf8'), {
-            syntax: syntax,
-            filename: file.path
-          });
-        file.contents = new Buffer(output);
+        if (!isToExclude(config, file)) {
+          var output = comb.processString(
+            file.contents.toString('utf8'), {
+              syntax: syntax,
+              filename: file.path
+            });
+          file.contents = new Buffer(output);
+        }
       } catch (err) {
         this.emit('error', new PluginError(PLUGIN_NAME, file.path + '\n' + err));
       }
@@ -81,6 +84,15 @@ function Plugin(configPath, options) {
 
   // Return the file stream
   return stream;
+}
+
+function isToExclude(config, file) {
+  var excludes = config.exclude || [];
+  var path = file.path;
+
+  return excludes.filter(exclude => {
+    return _.includes(path, exclude);
+  }).length;
 }
 
 // Export the plugin main function
