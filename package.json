@@ -30,6 +30,7 @@
   "dependencies": {
     "csscomb": "^3.1.7",
     "gulp-util": "^3.0.7",
+    "lodash": "^4.17.4",
     "through2": "^2.0.1"
   },
   "devDependencies": {
