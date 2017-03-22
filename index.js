@@ -87,7 +87,7 @@ function Plugin(configPath, options) {
 }
 
 function isToExclude(config, file) {
-  var excludes = config.exclude || [];
+  var excludes = config && config.exclude || [];
   var path = file.path;
 
   return excludes.filter(function(exclude) {
