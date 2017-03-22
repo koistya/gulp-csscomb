@@ -90,7 +90,7 @@ function isToExclude(config, file) {
   var excludes = config.exclude || [];
   var path = file.path;
 
-  return excludes.filter(exclude => {
+  return excludes.filter(function(exclude) {
     return _.includes(path, exclude);
   }).length;
 }
