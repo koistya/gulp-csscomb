@@ -62,12 +62,14 @@ function Plugin(configPath, options) {
       var syntax = options.syntax || file.path.split('.').pop();
 
       try {
-        var output = comb.processString(
+        var promisedOutput = comb.processString(
           file.contents.toString('utf8'), {
             syntax: syntax,
             filename: file.path
           });
-        file.contents = new Buffer(output);
+          promisedOutput.then(processedString => {
+            file.contents = new Buffer(processedString);
+          });
       } catch (err) {
         this.emit('error', new PluginError(PLUGIN_NAME, file.path + '\n' + err));
       }
