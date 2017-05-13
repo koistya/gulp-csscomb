@@ -28,11 +28,11 @@
     "index.js"
   ],
   "dependencies": {
-    "csscomb": "^3.1.7",
     "gulp-util": "^3.0.7",
     "through2": "^2.0.1"
   },
   "devDependencies": {
+    "csscomb": "^4.0.1",
     "jshint": "^2.9.3",
     "mocha": "^3.0.2"
   },
