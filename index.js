@@ -7,10 +7,11 @@
 
 var Comb = require('csscomb');
 var fs = require('fs');
-var gutil = require('gulp-util');
 var path = require('path');
 var through = require('through2');
-var PluginError = gutil.PluginError;
+var PluginError = require('plugin-error');
+var log = require('fancy-log');
+var colors = require('ansi-colors');
 
 // Constants
 var PLUGIN_NAME = 'gulp-csscomb';
@@ -43,11 +44,11 @@ function Plugin(configPath, options) {
     } else if (file.isBuffer() && SUPPORTED_EXTENSIONS.indexOf(path.extname(file.path)) !== -1) {
 
       if (verbose) {
-        gutil.log(PLUGIN_NAME, 'Processing ' + gutil.colors.magenta(file.path));
+        log(PLUGIN_NAME, 'Processing ' + colors.magenta(file.path));
       }
 
       if (configPath && !fs.existsSync(configPath)) {
-        this.emit('error', new PluginError(PLUGIN_NAME, 'Configuration file not found: ' + gutil.colors.magenta(configPath)));
+        this.emit('error', new PluginError(PLUGIN_NAME, 'Configuration file not found: ' + colors.magenta(configPath)));
         return cb();
       }
 
@@ -55,7 +56,7 @@ function Plugin(configPath, options) {
       var config = Comb.getCustomConfig(configPath);
 
       if (verbose) {
-        gutil.log(PLUGIN_NAME, 'Using configuration file ' + gutil.colors.magenta(configPath));
+        log(PLUGIN_NAME, 'Using configuration file ' + colors.magenta(configPath));
       }
 
       var comb = new Comb(config || 'csscomb');
