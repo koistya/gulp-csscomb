@@ -12,6 +12,7 @@ var through = require('through2');
 var PluginError = require('plugin-error');
 var log = require('fancy-log');
 var colors = require('ansi-colors');
+var applySourceMap = require('vinyl-sourcemaps-apply');
 
 // Constants
 var PLUGIN_NAME = 'gulp-csscomb';
@@ -19,6 +20,10 @@ var SUPPORTED_EXTENSIONS = ['.css', '.sass', '.scss', '.less'];
 
 // Plugin level function (dealing with files)
 function Plugin(configPath, options) {
+  // generate source maps if plugin source-map present
+  if (file.sourceMap) {
+    options.makeSourceMaps = true;
+  }
 
   if (arguments.length == 1 && typeof configPath === 'object') {
     options = configPath;
@@ -69,6 +74,10 @@ function Plugin(configPath, options) {
             filename: file.path
           });
         file.contents = new Buffer(output);
+        // apply source map to the chain
+        if (file.sourceMap) {
+          applySourceMap(file, result.map);
+        }
       } catch (err) {
         this.emit('error', new PluginError(PLUGIN_NAME, file.path + '\n' + err));
       }
