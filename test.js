@@ -8,7 +8,7 @@
 'use strict';
 
 var assert = require('assert');
-var gutil  = require('gulp-util');
+var Vinyl = require('vinyl');
 var csscomb = require('./index');
 
 var cssinput = 'h1 { color: yellow; } \n h1 { font-size: 2em; }';
@@ -30,7 +30,7 @@ describe('gulp-csscomb', function() {
       cb();
     });
 
-    stream.write(new gutil.File({
+    stream.write(new Vinyl({
       path: 'style.css',
       contents: new Buffer(cssinput)
     }));
