@@ -14,7 +14,7 @@ var fancyLog = require('fancy-log');
 var colors = require('ansi-colors');
 
 // Constants
-var PLUGIN_NAME = 'gulp-csscomb';
+var PLUGIN_NAME = 'gulp-csscomb2';
 var SUPPORTED_EXTENSIONS = ['.css', '.sass', '.scss', '.less'];
 
 // Plugin level function (dealing with files)
@@ -24,7 +24,9 @@ function Plugin(configPath, options) {
     options = configPath;
     configPath = options.configPath;
   } else if (arguments.length == 2 && typeof options === 'boolean') {
-    options = { verbose: options }; // for backward compatibility
+    options = {
+      verbose: options
+    }; // for backward compatibility
   }
 
   options = options || {};
@@ -34,7 +36,7 @@ function Plugin(configPath, options) {
   //var lint = options.lint || false; // TODO: Report about found issues in style sheets
 
   // Create a stream through which each file will pass
-  var stream = through.obj(function(file, enc, cb) {
+  var stream = through.obj(function (file, enc, cb) {
 
     if (file.isNull()) {
       // Do nothing
@@ -63,12 +65,14 @@ function Plugin(configPath, options) {
       var syntax = options.syntax || file.path.split('.').pop();
 
       try {
-        var output = comb.processString(
+        var promisedOutput = comb.processString(
           file.contents.toString('utf8'), {
             syntax: syntax,
             filename: file.path
           });
-        file.contents = new Buffer(output);
+        promisedOutput.then(function (processedString) {
+          file.contents = new Buffer(processedString);
+        });
       } catch (err) {
         this.emit('error', new PluginError(PLUGIN_NAME, file.path + '\n' + err));
       }
