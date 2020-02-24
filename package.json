@@ -1,14 +1,14 @@
 {
-  "name": "gulp-csscomb2",
-  "description": "Fork of gulp-csscomb, but with non-vulnerable packages. CSScomb is a coding style formatter for CSS.",
-  "version": "1.0.0",
-  "homepage": "http://github.com/unrinfosec/gulp-csscomb2",
+  "name": "gulp-csscomb",
+  "description": "CSScomb is a coding style formatter for CSS.",
+  "version": "3.1.0",
+  "homepage": "http://github.com/koistya/gulp-csscomb",
   "repository": {
     "type": "git",
-    "url": "http://github.com/unrinfosec/gulp-csscomb2.git"
+    "url": "https://github.com/koistya/gulp-csscomb.git"
   },
   "bugs": {
-    "url": "https://github.com/unrinfosec/gulp-csscomb2/issues"
+    "url": "https://github.com/koistya/gulp-csscomb/issues"
   },
   "author": "Konstantin Tarkus (@koistya)",
   "contributors": ["UNR Information Security (https://infosec.unr.edu)"],
