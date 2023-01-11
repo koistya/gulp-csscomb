@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "jshint": "^2.9.3",
-    "mocha": "^3.0.2",
+    "mocha": "^10.2.0",
     "vinyl": "^2.1.0"
   },
   "engines": {
